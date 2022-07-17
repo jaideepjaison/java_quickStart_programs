@@ -18,6 +18,7 @@ public class EmployUpdate {
 		emp.setEnd_date(sc.next());
 		String updateDetails= dao.updateDetails(emp);
 		System.out.println(updateDetails);
+		System.out.println("not required syso");
 		
 	}
 }
