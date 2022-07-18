@@ -7,8 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class PersonInsertMain {
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException, ParseException {
 		Date date=new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		PersonDAO dao=new PersonDAO();
 		Scanner sc=new Scanner(System.in);
 		Person person=new Person();
@@ -18,17 +19,19 @@ public class PersonInsertMain {
 		person.setPersonname(sc.next());
 		System.out.println("Enter DOb");
 		String date1=sc.next();
-		java.sql.Date sqldate= null;
-		
-		try {
-			date= new SimpleDateFormat("yyyy-MM-dd").parse(date1);
-			sqldate=new java.sql.Date(date.getTime());
-			//System.out.println(sqldate);
-			person.setDob(sqldate);
-		} catch (ParseException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		java.sql.Date date2=new java.sql.Date(sdf.parse(date1).getTime());
+		person.setDob(date2);
+//		java.sql.Date sqldate= null;
+//		
+//		try {
+//			date= new SimpleDateFormat("yyyy-MM-dd").parse(date1);
+//			sqldate=new java.sql.Date(date.getTime());
+//			//System.out.println(sqldate);
+//			person.setDob(sqldate);
+//		} catch (ParseException e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
 		System.out.println("Enter Gender");
 		String gen=sc.next();
 		if(gen.toUpperCase().equals("MALE"))
